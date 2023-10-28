@@ -1,76 +1,53 @@
-<?php
-require_once __DIR__ . "/../../src/dao/perfildao.php";
+<!doctype html>
+<html lang="pt-br">
 
-$perfilDAO = new PerfilDAO();
-$perfis = $perfilDAO->getAll();
-?>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,
-     initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!--Estilo CSS -->
     <link rel="stylesheet" href="../../assets/css/usuario.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <title>Tech Jobs - Candidato</title>
+    <title>Tech Jobs - Empresa</title>
 </head>
+
+
 <body>
 <header class="main-header">
+
     <nav class="main-header-content">
 
         <div class="logo">
-            <a href="../../auth/home.php">TechJobs</a>
+            <a href="../../index.php">TechJobs</a>
         </div>
-
 
         <nav class="menu">
 
-
             <ul>
                 <li class="item-menu">
-                    <a href="../../auth/home.php">
+                    <a href="../../index.php">
                         <span class="icon"><i class="bi bi-house-door"></i></span>
                         <span class="txt-link">Home</span>
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
-                        <span class="icon"><i class="bi bi-columns"></i></span>
-                        <span class="txt-link">Dashboard</span>
-                    </a>
-                </li>
-
-                <!--Colocar condição de acesso à configuração.
-                 Se for um candidato, ele pode alterar dados sendo um perfil candidato.
-                 Se for um empresa, ele pode alterar dados sendo um perfil empresa. -->
-
-                <li class="item-menu">
-                    <a href="index.php ">
-                        <span class="icon"><i class="bi bi-person"></i></span>
-                        <span class="txt-link">Perfil</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="../../auth/logoff.php">
-                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
-                        <span class="txt-link">Logoff</span>
+                    <a style="color: coral" href="../../auth/index.php">
+                        <span class="icon"><i class="bi bi-box-arrow-in-right"></i></span>
+                        <span class="txt-link">Login</span>
                     </a>
                 </li>
             </ul>
         </nav>
     </nav>
 </header>
-<main class="main-candidato">
-    <div class="card-candidato">
 
-        <h2>Novo Usuário</h2>
+<main class="main-empresa">
+    <div class="card-empresa">
+        <h2>Criar uma nova conta de empresa</h2>
 
         <form action="save.php" method="post">
             <div class="container">
@@ -79,54 +56,53 @@ $perfis = $perfilDAO->getAll();
                     <div class="col-md-12">
                         <div class="card-body font-weight-bold">
 
-                            <div class="form-group card-candidato-content">
-                                <input name="name" type="text" class="form-control" id="name"
-                                       placeholder="Nome">
+                            <div class="form-group card-empresa-content">
+                                <label for="name">Nome *</label>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Nome" required>
 
-                                <input name="email" type="email" class="form-control" id="email"
-                                       placeholder="E-mail">
+                                <label for="razao_social">Razão Social</label>
+                                <input name="razao_social" type="text" class="form-control" id="razao_social"
+                                       placeholder="Razão Social">
 
-                                <div class="card-candidato-content-row">
-                                    <div class="form-group col-xs-3">
-                                        <label for="cpf">Cpf</label>
-                                        <input name="cpf" type="cpf" class="form-control" id="cpf"
-                                               placeholder="00-000-000-00">
+                                <label for="email">Email *</label>
+                                <input name="email" type="email" class="form-control" id="email" placeholder="E-mail" required>
 
+                                <div class="card-empresa-content-row">
+                                    <div class="form-group col-xs-3" style="margin: 20px;">
+                                        <label for="cnpj">CNPJ *</label>
+                                        <input name="cnpj" type="text" class="form-control" id="cnpj"
+                                               placeholder="000.000.000/0000-00" required>
                                     </div>
-                                    <div class="form-group col-xs-3">
-                                        <label for="ddd"> DDD</label>
-                                        <input name="ddd" type="ddd" class="form-control" id="ddd"
+
+                                    <div class="form-group col-xs-3" style="margin: 20px;">
+                                        <label for="ddd">DDD</label>
+                                        <input name="ddd" type="text" class="form-control" id="ddd"
                                                placeholder="00">
-
                                     </div>
-                                    <div class="form-group col-xs-3">
+
+                                    <div class="form-group col-xs-3" style="margin: 20px;">
                                         <label for="telefone">Telefone</label>
-                                        <input name="telefone" type="telefone" class="form-control" id="telefone"
+                                        <input name="telefone" type="tel" class="form-control" id="telefone"
                                                placeholder="00000-0000">
                                     </div>
                                 </div>
-                                <input name="senha" type="password" class="form-control" id="senha"
-                                       placeholder="Senha">
-                                <input name="senha2" type="password" class="form-control" id="senha2"
-                                       placeholder="Confirme a senha">
 
-                                <div>
-                                    <label for="perfil" style="display: block">Perfil</label>
-                                    <select name="perfil">
-                                        <?php foreach ($perfis as $perfil) : ?>
-                                            <option value="<?= $perfil['id'] ?>"><?= $perfil['nome'] ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
+                                <label for="senha">Senha</label>
+                                <input name="senha" type="password" class="form-control" id="senha" placeholder="Senha" required>
+
+                                <label for="senha2">Confirmar Senha</label>
+                                <input name="senha2" type="password" class "form-control" id="senha2" placeholder="Confirme a senha" required>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-login">Salvar</button>
 
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-login">Cadastrar</button>
+                    <p class="text"><a href="../../auth/index.php">Já tem uma conta?</a></p>
                 </div>
             </div>
         </form>
-
     </div>
 </main>
 </body>
+</html>
